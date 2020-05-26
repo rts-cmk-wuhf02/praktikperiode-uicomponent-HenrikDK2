@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
+    <script src="App.jsx" defer></script>
+    <style>
+      html {
+        overflow: hidden;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #preloader {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 1s;
+        opacity: 1;
+        position: fixed;
+        background-color: #110a0a;
+        z-index: 100000000000;
+      }
+    </style>
+    <title>Forside</title>
+  </head>
+  <body>
+    <div id="preloader">
+      <img
+        src="./loader.svg"
+        alt=""
+        style="display: block; width: 30vw; height: 30vh;"
+      />
+    </div>
+    <div id="root"></div>
+  </body>
+</html>
