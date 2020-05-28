@@ -3,7 +3,7 @@ import React from "react";
 import { css, jsx } from "@emotion/core";
 import Img from "../atoms/Img";
 
-const ImageContainer = ({ src, alt, className }) => {
+const ImageContainer = ({ src, alt, className, children, onClick }) => {
   const figureStyle = css`
     width: 50px;
     height: auto;
@@ -12,9 +12,12 @@ const ImageContainer = ({ src, alt, className }) => {
   `;
 
   return (
-    <figure css={figureStyle}>
-      <Img src={src} alt={alt} />
-    </figure>
+    <>
+      <figure css={figureStyle} onClick={onClick}>
+        <Img src={src} alt={alt} />
+      </figure>
+      {children}
+    </>
   );
 };
 

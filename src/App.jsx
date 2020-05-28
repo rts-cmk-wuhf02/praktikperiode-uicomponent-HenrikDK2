@@ -24,17 +24,13 @@ const App = () => {
       });
     }, 0);
   }, []);
-  console.log(contentfulHook[0]);
-
   return (
-    <Suspense>
-      <contentfulContext.Provider value={contentfulHook}>
-        <BrowserRouter>
-          <Global />
-          <Pages />
-        </BrowserRouter>
-      </contentfulContext.Provider>
-    </Suspense>
+    <contentfulContext.Provider value={contentfulHook}>
+      <BrowserRouter>
+        <Global />
+        <Pages />
+      </BrowserRouter>
+    </contentfulContext.Provider>
   );
 };
 

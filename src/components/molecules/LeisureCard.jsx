@@ -1,16 +1,19 @@
 /** @jsx jsx */
-import React, { useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { css, jsx } from "@emotion/core";
 import ImageContainer from "./ImageContainer";
 
 const LeisureCard = ({ data }) => {
+  const [largeImage, setLargeImage] = useState(
+    data.fields.bigImage.fields.file.url
+  );
   const bigImage = css`
     width: 293px;
+    flex-shrink: 0;
     height: 375px;
   `;
 
   const container = css`
-    width: 52%;
     display: flex;
     height: 100%;
     flex-direction: column;
@@ -31,10 +34,15 @@ const LeisureCard = ({ data }) => {
       cursor: pointer;
       font-size: 11px;
       font-weight: bold;
+      transition: all 0.2s;
       padding: 10px 0;
       border-radius: 20px;
       margin-left: auto;
       width: 99px;
+    }
+
+    & button:hover {
+      transform: scale(1.2);
     }
   `;
 
@@ -54,28 +62,42 @@ const LeisureCard = ({ data }) => {
     display: flex;
     justify-content: space-between;
     margin-top: auto;
+
     & figure {
+      transition: all 0.15s;
       width: 99px;
+      cursor: pointer;
       height: 104px;
+    }
+
+    & figure:hover {
+      transform: scale(1.05);
+    }
+
+    & img {
+      border-radius: 10px;
     }
   `;
 
-  console.log(data);
-
   return (
     <article css={leisureContainer}>
-      <ImageContainer
-        className={bigImage}
-        src={data && data[0].fields.bigImage.fields.file.url}
-      />
+      <ImageContainer className={bigImage} src={largeImage} />
       <div css={container}>
         <button>Leisure</button>
-        <h2>{data && data[0].fields.title}</h2>
-        <p>{data && data[0].fields.desc}</p>
+        <h2>{data && data.fields.title}</h2>
+        <p>{data && data.fields.desc}</p>
         <div css={smallImageContainer}>
           {data &&
-            data[0].fields.images.map((image, i) => (
-              <ImageContainer key={image + i} src={image.fields.file.url} />
+            data.fields.images.map((image, i) => (
+              <ImageContainer
+                key={image + i}
+                onClick={(e) => {
+                  let oldSrc = largeImage;
+                  setLargeImage(e.target.src);
+                  e.target.src = oldSrc;
+                }}
+                src={image.fields.file.url}
+              />
             ))}
         </div>
       </div>
