@@ -1,9 +1,11 @@
 import React, { useState, useEffect, Suspense } from "react";
 import { render } from "react-dom";
-import Pages from "./Pages";
+import Pages from "./Pages.jsx";
 import { BrowserRouter } from "react-router-dom";
-import contentfulContext from "./context/contentful.context";
-import Global from "./Global";
+import contentfulContext from "./context/contentful.context.jsx";
+import Global from "./Global.jsx";
+require("./images/loader.svg");
+const contentful = require("contentful");
 const client = contentful.createClient({
   space: "px4ekxgk60u8",
   accessToken: "CHr2wOJan5ubejwq9cpH9bGZslWkoo9_2lJ-LB2uyvc",

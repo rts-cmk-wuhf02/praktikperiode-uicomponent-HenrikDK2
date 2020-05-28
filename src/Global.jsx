@@ -1,10 +1,10 @@
 /** @jsx jsx */
 import React, { useContext } from "react";
 import { css, jsx, Global as GlobalElm } from "@emotion/core";
-import GothamBold from "./fonts/GothamBold.otf";
-import GothamBook from "./fonts/GothamBook.otf";
-import GothamMedium from "./fonts/GothamMedium.ttf";
-import GothamLight from "./fonts/GothamThin.ttf";
+import GothamBold from "./fonts/GothamBold.woff";
+import GothamBook from "./fonts/GothamBook.woff";
+import GothamMedium from "./fonts/GothamMedium.woff";
+import GothamLight from "./fonts/GothamThin.woff";
 
 const Global = ({}) => {
   //GlobalStyle
@@ -15,28 +15,28 @@ const Global = ({}) => {
 
     @font-face {
       font-family: "Gotham";
-      src: url(${GothamMedium});
+      src: url(${GothamMedium}) format("woff");
       font-weight: medium;
       font-style: normal;
     }
 
     @font-face {
       font-family: "Gotham";
-      src: url(${GothamBook});
+      src: url(${GothamBook}) format("woff");
       font-weight: 600;
       font-style: normal;
     }
 
     @font-face {
       font-family: "Gotham";
-      src: url(${GothamBold});
+      src: url(${GothamBold}) format("woff");
       font-weight: bold;
       font-style: normal;
     }
 
     @font-face {
       font-family: "Gotham";
-      src: url(${GothamLight});
+      src: url(${GothamLight}) format("woff");
       font-weight: lighter;
       font-style: normal;
     }
