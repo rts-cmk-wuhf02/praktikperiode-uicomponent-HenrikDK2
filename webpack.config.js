@@ -1,7 +1,7 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
-const FontminPlugin = require("fontmin-webpack");
-const NukeCssPlugin = require("nukecss-webpack");
+const CopyPlugin = require("copy-webpack-plugin");
+
 const path = require("path");
 
 module.exports = {
@@ -13,6 +13,10 @@ module.exports = {
   },
   resolve: {
     extensions: [".js", ".jsx", ".png", ".jpg"],
+    alias: {
+      react: "preact/compat",
+      "react-dom": "preact/compat",
+    },
   },
   devServer: {
     historyApiFallback: true,
@@ -36,6 +40,7 @@ module.exports = {
           evaluate: true,
           if_return: true,
           join_vars: true,
+          comments: false,
         },
       }),
     ],
@@ -47,13 +52,36 @@ module.exports = {
         exclude: /node_modules/,
         use: "babel-loader",
       },
+      { test: /\.(css)$/, loader: "css-loader" },
       {
         test: /\.(png|svg|gif|jpg|jpeg|ttf|woff|woff2|otf)$/,
-        use: "file-loader",
-      },
-      {
-        test: /\loader.(svg)$/,
-        use: "file-loader?name=./images/[name].[ext]",
+        use: [
+          "file-loader",
+          {
+            loader: "image-webpack-loader",
+            options: {
+              mozjpeg: {
+                progressive: true,
+                quality: 60,
+              },
+              // optipng.enabled: false will disable optipng
+              optipng: {
+                enabled: false,
+              },
+              pngquant: {
+                quality: [0.4, 0.7],
+                speed: 1,
+              },
+              gifsicle: {
+                interlaced: false,
+              },
+              // the webp option will enable WEBP
+              webp: {
+                quality: 60,
+              },
+            },
+          },
+        ],
       },
     ],
   },
@@ -61,11 +89,19 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, "src/index.html"),
       filename: "index.html",
+      minify: {
+        removeComments: true,
+        collapseBooleanAttributes: true,
+        collapseInlineTagWhitespace: true,
+        collapseWhitespace: true,
+        minifyCSS: true,
+        minifyURLs: true,
+        minifyJS: true,
+        removeTagWhitespace: true,
+      },
     }),
-    new NukeCssPlugin(),
-    new FontminPlugin({
-      autodetect: true,
-      glyphs: ["\uf0c8"],
+    new CopyPlugin({
+      patterns: [{ from: "./src/images/loader.svg", to: "", flatten: true }],
     }),
   ],
 };

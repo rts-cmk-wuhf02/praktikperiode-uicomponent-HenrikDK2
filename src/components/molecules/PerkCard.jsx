@@ -3,24 +3,25 @@ import React, { useContext } from "react";
 import { css, jsx } from "@emotion/core";
 import ImageContainer from "./ImageContainer";
 
-const PerkCard = ({ data, className }) => {
+const PerkCard = ({ data, className, small }) => {
   const articleStyle = css`
-    width: 270px;
+    width: ${small ? "169px" : "270px"};
     border-radius: 10px;
     padding: 34px;
     box-sizing: border-box;
-    height: 272px;
+    height: ${small ? "171px" : "272px"};
     color: #fff;
     display: flex;
     flex-direction: column;
-    margin-right: 30px;
+    margin-right: ${small ? 0 : "30px"};
     background-color: ${data && data.fields.backgroundColor};
     & h4 {
       font-size: 1.125rem;
-      margin: auto 0 10px 0;
+      margin: ${small ? "0 auto" : " auto 0 10px 0"};
     }
 
     & p {
+      display: ${small ? "none" : "block"};
       font-weight: 600;
       margin: 0;
 
@@ -32,7 +33,7 @@ const PerkCard = ({ data, className }) => {
   const icon = css`
     width: 62px;
     height: auto;
-    margin-left: auto;
+    margin: ${small ? "0 auto 22px auto" : "0 auto"};
   `;
 
   return (
