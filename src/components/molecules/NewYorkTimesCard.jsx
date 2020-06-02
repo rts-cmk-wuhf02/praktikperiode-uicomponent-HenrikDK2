@@ -8,9 +8,7 @@ import SwiperButton from "../atoms/SwiperButton";
 
 const NewYorkTimesCard = ({ className, data }) => {
   const imageExist = Boolean(data.fields.images);
-  const [currentImage, setCurrentImage] = useState(
-    imageExist ? data.fields.images[0].fields.file.url : null
-  );
+  const [currentImage, setCurrentImage] = useState(imageExist ? data.fields.images[0].fields.file.url : null);
   const isBig = data.fields.big;
   const articleStyle = css`
   background: #fff;
@@ -84,6 +82,9 @@ const NewYorkTimesCard = ({ className, data }) => {
     cursor: pointer;
     border-radius: 50px;
     padding: 0.875rem 0;
+    &:hover {
+      transform: scale(1.1);
+    }
   `;
 
   const minSwiperCss = css`

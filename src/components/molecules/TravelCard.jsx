@@ -19,7 +19,7 @@ const travelCard = ({ data, className }) => {
       text-transform: uppercase;
     }
     & img {
-      border-radius: 10px;
+      border-radius: 10px 10px 0 0;
     }
     & > figure {
       width: 100%;
