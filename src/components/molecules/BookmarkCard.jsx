@@ -34,6 +34,9 @@ const BookmarkCard = ({ data }) => {
   const bgImage = css`
     width: 371px;
     height: 372px;
+    & img {
+      border-radius: 10px;
+    }
   `;
 
   const heading = css`
@@ -49,10 +52,7 @@ const BookmarkCard = ({ data }) => {
     <article css={articleStyle}>
       <h2 css={heading}>{data && data.fields.title}</h2>
       <ImageContainer className={bookmark} src={bookmarkSvg} />
-      <ImageContainer
-        className={bgImage}
-        src={data && data.fields.image.fields.file.url}
-      />
+      <ImageContainer className={bgImage} src={data && data.fields.image.fields.file.url} />
       <h4>{data && data.fields.category}</h4>
     </article>
   );

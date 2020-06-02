@@ -5,7 +5,7 @@ import ImageContainer from "../molecules/ImageContainer";
 
 const travelCard = ({ data, className }) => {
   const travelCard = css`
-    border-radius: 10px;
+    border-radius: 10px 10px 0 0;
     width: 372px;
     height: 471px;
     background: #fff;
